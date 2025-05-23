@@ -1,6 +1,7 @@
 import { City } from '../models/City';
 import { ExchangeRates, RateLine } from '../types';
 import { cityConfig } from '../config/cities';
+import { cityRates } from '../config/rates';
 
 export const formatRatesMessage = (
   rates: ExchangeRates,
@@ -10,6 +11,7 @@ export const formatRatesMessage = (
   const operator = cityConfig.operators[city];
   const info = cityConfig.info[city];
   const cityDisplayName = cityConfig.translations[city];
+  const usdtRates = cityRates[city];
 
   const rubToUsdRates: RateLine[] = [
     { amount: '1000000₽', cash: rubToCash[4] ?? 0, zelle: rubToZelle[4] ?? 0 },
@@ -33,37 +35,41 @@ export const formatRatesMessage = (
   const formatUsdToRubLine = (rate: RateLine): string =>
     `• ${rate.amount} -> ${rate.cash}₽`;
 
+  const formatUsdtRates = (rates: { [key: string]: number }): string[] =>
+    Object.entries(rates)
+      .sort(([amountA], [amountB]) => Number(amountB) - Number(amountA))
+      .map(([amount, percent]) => `• $${amount} -> ${percent}%`);
+
+  const formatCashTransfers = (
+    transfers: typeof usdtRates.cashTransfers
+  ): string[] =>
+    transfers.map(
+      (transfer) =>
+        `• ${transfer.from} -> ${transfer.to} (от $${transfer.minAmount}) | ${transfer.percent}%`
+    );
+
   return [
     `<b>📍 Обмен валют в ${cityDisplayName}:</b>`,
     `Написать по обмену <a href="https://t.me/${operator.username}">Zelle online</a> или оставить <a href="https://obmenca.com/">заявку на сайте</a> или в <a href="https://t.me/Obmen_cabot">нашем боте</a>`,
     '',
     '<b>Курсы обмена ₽ на $(наличные):</b>',
     ...rubToUsdRates.map(formatRubToUsdLine),
-    '• <i>Zelle +2%</i>',
+    `• <i>Zelle +${usdtRates.zellePercent}%</i>`,
     '',
     '<b>Курсы обмена $(наличные) на ₽:</b>',
     ...usdToRubRates.map(formatUsdToRubLine),
-    '• <i>Zelle +2%</i>',
+    `• <i>Zelle +${usdtRates.zellePercent}%</i>`,
     '',
     '<b>Обмен USDT на $ (наличные):</b>',
-    '• $10,000 -> 1.0%',
-    '• $5,000 -> 2.0%',
-    '• $1,500 -> 2.5%',
-    '• $500 -> 3.5%',
-    '• $100 -> 6.0%',
-    '• <i>Zelle +2%</i>',
+    ...formatUsdtRates(usdtRates.usdtToCash),
+    `• <i>Zelle +${usdtRates.zellePercent}%</i>`,
     '',
     '<b>Обмен $ (наличные) на USDT:</b>',
-    '• $10,000 -> 3.0%',
-    '• $5,000 -> 3.5%',
-    '• $1,500 -> 4.0%',
-    '• $500 -> 4.5%',
-    '• $100 -> 6.0%',
-    '• <i>Zelle +2%</i>',
+    ...formatUsdtRates(usdtRates.cashToUsdt),
+    `• <i>Zelle +${usdtRates.zellePercent}%</i>`,
     '',
     '<b>⚡️ Переводы наличных</b>',
-    '• LA -> Москва (от $5000) | 3%',
-    '• Москва -> LA (от $5000) | 3%',
+    ...formatCashTransfers(usdtRates.cashTransfers),
     `💡 <a href="https://t.me/${operator.username}">Написать оператору</a> и совершить обмен`,
     '',
     `🔵 <b><a href="${info}">УЗНАТЬ ПОЛНУЮ ИНФОРМАЦИЮ И ДОПОЛНИТЕЛЬНЫЕ УСЛУГИ (ОТЗЫВЫ)</a></b>`,
