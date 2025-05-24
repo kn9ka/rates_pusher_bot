@@ -36,7 +36,7 @@ function setupScheduledMessages() {
   cities.forEach((city) => {
     const timeZone = cityConfig.timeZones[city];
     const job = cron.schedule(
-      '0 9 * * *',
+      '0 7 * * *',
       () => sendScheduledMessage(bot, city),
       {
         timezone: timeZone,
