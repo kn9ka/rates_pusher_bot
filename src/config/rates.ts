@@ -7,7 +7,12 @@ interface UsdtRates {
   cashToUsdt: {
     [key: string]: number;
   };
-  zellePercent: number;
+  zellePercent: {
+    rubToUsd: number;
+    usdToRub: number;
+    usdtToCash: number;
+    cashToUsdt: number;
+  };
 }
 
 interface CashTransfer {
@@ -39,7 +44,12 @@ export const cityRates: CityRates = {
       '500': 4.5,
       '100': 6.0,
     },
-    zellePercent: 2,
+    zellePercent: {
+      rubToUsd: 2,
+      usdToRub: 2,
+      usdtToCash: 2,
+      cashToUsdt: 2,
+    },
     cashTransfers: [
       {
         from: 'Лос-Анджелес',
@@ -70,7 +80,12 @@ export const cityRates: CityRates = {
       '500': 4.5,
       '100': 5.0,
     },
-    zellePercent: 2,
+    zellePercent: {
+      rubToUsd: 2,
+      usdToRub: 2,
+      usdtToCash: 2,
+      cashToUsdt: 2,
+    },
     cashTransfers: [
       {
         from: 'Майами',
@@ -101,7 +116,12 @@ export const cityRates: CityRates = {
       '500': 8.0,
       '100': 13.0,
     },
-    zellePercent: 2,
+    zellePercent: {
+      rubToUsd: 2,
+      usdToRub: 2,
+      usdtToCash: 2,
+      cashToUsdt: 2,
+    },
     cashTransfers: [
       {
         from: 'Нью-Йорк',
@@ -132,7 +152,12 @@ export const cityRates: CityRates = {
       '500': 6.0,
       '100': 6.5,
     },
-    zellePercent: 1,
+    zellePercent: {
+      rubToUsd: 2,
+      usdToRub: 2,
+      usdtToCash: 1,
+      cashToUsdt: 1,
+    },
     cashTransfers: [
       {
         from: 'Чикаго',
@@ -163,7 +188,12 @@ export const cityRates: CityRates = {
       '500': 4.5,
       '100': 6.0,
     },
-    zellePercent: 2,
+    zellePercent: {
+      rubToUsd: 2,
+      usdToRub: 2,
+      usdtToCash: 2,
+      cashToUsdt: 2,
+    },
     cashTransfers: [
       {
         from: 'Орандж Каунти',
