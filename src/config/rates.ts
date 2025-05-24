@@ -132,7 +132,7 @@ export const cityRates: CityRates = {
       '500': 6.0,
       '100': 6.5,
     },
-    zellePercent: 2,
+    zellePercent: 1,
     cashTransfers: [
       {
         from: 'Чикаго',
