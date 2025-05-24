@@ -51,6 +51,7 @@ async function sendRatesMessage(
   const messageOptions = {
     reply_markup: keyboard,
     parse_mode: 'HTML' as const,
+    link_preview_options: { is_disabled: true },
   };
 
   if (replyToMessageId) {
@@ -84,7 +85,8 @@ export async function sendScheduledMessage(bot: Telegraf, city: City) {
       try {
         bot.telegram.sendMessage(
           Number(process.env.ADMIN_CHAT_ID),
-          `Сообщение отправлено в ${cityConfig.groups[city]}`
+          `Сообщение отправлено в ${cityConfig.groups[city]}`,
+          { link_preview_options: { is_disabled: true } }
         );
       } catch (error) {
         console.error(`Ошибка при отправке сообщения в админ-чат:`, error);

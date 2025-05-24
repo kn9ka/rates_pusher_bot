@@ -33,13 +33,13 @@ export const cityRates: CityRates = {
       '100': 6.0,
     },
     cashToUsdt: {
-      '10000': 2.5,
-      '5000': 2.0,
-      '1500': 3.0,
-      '500': 3.5,
+      '10000': 3.0,
+      '5000': 3.5,
+      '1500': 4.0,
+      '500': 4.5,
       '100': 6.0,
     },
-    zellePercent: 1,
+    zellePercent: 2,
     cashTransfers: [
       {
         from: 'Лос-Анджелес',
@@ -61,16 +61,16 @@ export const cityRates: CityRates = {
       '5000': 2.0,
       '1500': 2.5,
       '500': 3.5,
-      '100': 6.0,
+      '100': 5.0,
     },
     cashToUsdt: {
       '10000': 2.5,
-      '5000': 2.0,
-      '1500': 3.0,
-      '500': 3.5,
-      '100': 6.0,
+      '5000': 3.0,
+      '1500': 3.5,
+      '500': 4.5,
+      '100': 5.0,
     },
-    zellePercent: 1,
+    zellePercent: 2,
     cashTransfers: [
       {
         from: 'Майами',
@@ -88,20 +88,20 @@ export const cityRates: CityRates = {
   },
   [City.NEW_YORK]: {
     usdtToCash: {
-      '10000': 0.0,
-      '5000': 1.0,
-      '1500': 1.5,
-      '500': 2.5,
-      '100': 4.0,
+      '10000': 1.0,
+      '5000': 2.0,
+      '1500': 2.5,
+      '500': 3.5,
+      '100': 6.0,
     },
     cashToUsdt: {
-      '10000': 5.0,
-      '5000': 5.5,
-      '1500': 6.0,
-      '500': 7.0,
-      '100': 7.5,
+      '10000': 6.0,
+      '5000': 6.5,
+      '1500': 7.0,
+      '500': 8.0,
+      '100': 13.0,
     },
-    zellePercent: 1,
+    zellePercent: 2,
     cashTransfers: [
       {
         from: 'Нью-Йорк',
@@ -132,7 +132,7 @@ export const cityRates: CityRates = {
       '500': 6.0,
       '100': 6.5,
     },
-    zellePercent: 1,
+    zellePercent: 2,
     cashTransfers: [
       {
         from: 'Чикаго',
@@ -157,13 +157,13 @@ export const cityRates: CityRates = {
       '100': 6.0,
     },
     cashToUsdt: {
-      '10000': 2.5,
-      '5000': 2.0,
-      '1500': 3.0,
-      '500': 3.5,
+      '10000': 3,
+      '5000': 3.5,
+      '1500': 4.0,
+      '500': 4.5,
       '100': 6.0,
     },
-    zellePercent: 1,
+    zellePercent: 2,
     cashTransfers: [
       {
         from: 'Орандж Каунти',
