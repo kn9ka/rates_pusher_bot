@@ -48,30 +48,42 @@ export const formatRatesMessage = (
         `• ${transfer.from} -> ${transfer.to} (от $${transfer.minAmount}) | ${transfer.percent}%`
     );
 
-  return [
+  const showZellePercent = city !== City.MIAMI;
+
+  const messageLines = [
     `<b>📍 Обмен валют в ${cityDisplayName}:</b>`,
     `Написать по обмену <a href="https://t.me/${operator.username}">Zelle online</a> или оставить <a href="https://obmenca.com/">заявку на сайте</a> или в <a href="https://t.me/Obmen_cabot">нашем боте</a>`,
     '',
     '<b>Курсы обмена ₽ на $(наличные):</b>',
     ...rubToUsdRates.map(formatRubToUsdLine),
-    `• Zelle +${usdtRates.zellePercent.rubToUsd}%`,
+    ...(showZellePercent
+      ? [`• Zelle +${usdtRates.zellePercent.rubToUsd}%`]
+      : []),
     '',
     '<b>Курсы обмена $(наличные) на ₽:</b>',
     ...usdToRubRates.map(formatUsdToRubLine),
-    `• Zelle +${usdtRates.zellePercent.usdToRub}%`,
+    ...(showZellePercent
+      ? [`• Zelle +${usdtRates.zellePercent.usdToRub}%`]
+      : []),
     '',
     '<b>Обмен USDT на $ (наличные):</b>',
     ...formatUsdtRates(usdtRates.usdtToCash),
-    `• Zelle +${usdtRates.zellePercent.usdtToCash}%`,
+    ...(showZellePercent
+      ? [`• Zelle +${usdtRates.zellePercent.usdtToCash}%`]
+      : []),
     '',
     '<b>Обмен $ (наличные) на USDT:</b>',
     ...formatUsdtRates(usdtRates.cashToUsdt),
-    `• Zelle +${usdtRates.zellePercent.cashToUsdt}%`,
+    ...(showZellePercent
+      ? [`• Zelle +${usdtRates.zellePercent.cashToUsdt}%`]
+      : []),
     '',
     '<b>⚡️ Переводы наличных</b>',
     ...formatCashTransfers(usdtRates.cashTransfers),
     `💡 <a href="https://t.me/${operator.username}">Написать оператору</a> и совершить обмен`,
     '',
     `🔵 <b><a href="${info}">УЗНАТЬ ПОЛНУЮ ИНФОРМАЦИЮ И ДОПОЛНИТЕЛЬНЫЕ УСЛУГИ (ОТЗЫВЫ)</a></b>`,
-  ].join('\n');
+  ];
+
+  return messageLines.join('\n');
 };
