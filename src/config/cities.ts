@@ -48,7 +48,7 @@ export const cityConfig: CityConfig = {
     [City.MIAMI]: 'America/New_York',
     [City.NEW_YORK]: 'America/New_York',
     [City.CHICAGO]: 'America/Chicago',
-    [City.ORANGE_COUNTY]: 'America/Chicago',
+    [City.ORANGE_COUNTY]: 'America/Los_Angeles',
   },
   groups: {
     [City.LOS_ANGELES]: '@obmen_la_ca',
