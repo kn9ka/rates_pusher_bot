@@ -80,19 +80,15 @@ export async function sendScheduledMessage(bot: Telegraf, city: City) {
       city,
       replyToMessageId
     );
-
-    if (process.env.ADMIN_CHAT_ID) {
-      try {
-        bot.telegram.sendMessage(
-          Number(process.env.ADMIN_CHAT_ID),
-          `Сообщение отправлено в ${cityConfig.groups[city]}`,
-          { link_preview_options: { is_disabled: true } }
-        );
-      } catch (error) {
-        console.error(`Ошибка при отправке сообщения в админ-чат:`, error);
-      }
-    }
   } catch (error) {
+    if (process.env.ADMIN_CHAT_ID) {
+      bot.telegram.sendMessage(
+        Number(process.env.ADMIN_CHAT_ID),
+        `Возникла ошибка при отправке сообщения в ${city} ${JSON.stringify(
+          error
+        )}`
+      );
+    }
     console.error(`Ошибка при отправке сообщения для города ${city}:`, error);
   }
 }
