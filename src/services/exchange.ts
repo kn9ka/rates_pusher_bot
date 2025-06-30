@@ -57,6 +57,7 @@ export const getDirection = async (
 
     return direction?.direction_id || null;
   } catch (error) {
+    console.error(error);
     throw new ExchangeError('Не удалось получить направление обмена');
   }
 };
@@ -86,6 +87,7 @@ export const getCalc = async ({
       ? response.data.course_give
       : response.data.course_get;
   } catch (error) {
+    console.error(error);
     throw new ExchangeError('Не удалось получить расчет курса');
   }
 };
@@ -105,6 +107,7 @@ export const getChosenCityName = async (city: string): Promise<string> => {
       .json<CityResponse>();
     return response.data.dir_fields.city.options[city] || 'Не выбран';
   } catch (error) {
+    console.error(error);
     throw new ExchangeError('Не удалось получить название города');
   }
 };
@@ -122,6 +125,7 @@ export const getExchangeRateForCurrencyPair = async (
 
     return await getCalc({ directionId, amount, city });
   } catch (error) {
+    console.error(error);
     throw new ExchangeError('Не удалось получить курс обмена');
   }
 };
@@ -149,6 +153,7 @@ export const getAllExchangeRates = async (
 
     return rates as number[];
   } catch (error) {
+    console.error(error);
     throw new ExchangeError('Не удалось получить курсы обмена');
   }
 };
