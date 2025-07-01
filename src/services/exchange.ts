@@ -46,6 +46,7 @@ export const getDirection = async (
     const response = await ky
       .post(url, {
         headers: queryHeaders,
+        timeout: 100000,
       })
       .json<{ data: Direction[] }>();
 
@@ -80,6 +81,7 @@ export const getCalc = async ({
       .post(url, {
         headers: queryHeaders,
         body: formData,
+        timeout: 100000,
       })
       .json<CalcResponse>();
 
@@ -103,6 +105,7 @@ export const getChosenCityName = async (city: string): Promise<string> => {
       .post(url, {
         headers: queryHeaders,
         body: formData,
+        timeout: 100000,
       })
       .json<CityResponse>();
     return response.data.dir_fields.city.options[city] || 'Не выбран';
