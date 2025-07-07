@@ -45,7 +45,7 @@ export const cityConfig: CityConfig = {
   },
   timeZones: {
     [City.LOS_ANGELES]: 'America/Los_Angeles',
-    [City.MIAMI]: 'America/New_York',
+    [City.MIAMI]: 'America/Los_Angeles',
     [City.NEW_YORK]: 'America/New_York',
     [City.CHICAGO]: 'America/Chicago',
     [City.ORANGE_COUNTY]: 'America/Los_Angeles',
